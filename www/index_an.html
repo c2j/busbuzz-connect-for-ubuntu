@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="no-js" ng-app="busbuzzApp">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>BusBuzz &middot; Connect</title>
+        <meta name="description" content="">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/modifiedbyme.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        
+    </head>
+    <!-- style="background-color: #fa6c1e;"  -->
+    <body id="{{bodylayout}}">
+        
+        <div ng-view>
+
+
+
+
+        </div>
+        <div id="linemode" style="top: 12px;z-index: 1000;left: 0px;position: absolute;width: 100%;display: none;text-align:center">
+            <p style="font-size: 20px;">Offline Mode</p></div>
+        <!--    
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        -->
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-route.min.js"></script>
+        <!--
+        <script src="js/vendor/jquery-1.10.1.min.js"></script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+        -->
+        <script type="text/javascript">
+            //var SERVICE_URI = "http://127.0.0.1:8000/";
+            //var SERVICE_URI = "http://local.busbuzz:8000/";
+            var SERVICE_URI = "http://connect.busbuzz.com/";    
+            var AUTH_TOKEN = window.localStorage.getItem('auth_token');
+
+            var homepage="/login";
+            if(AUTH_TOKEN){
+                homepage = "/main";
+            }
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+        
+            function onDeviceReady() {
+                // Now safe to use the PhoneGap API
+                document.addEventListener("offline", onOffline, false);
+                document.addEventListener("online", onOnline, false);
+            }
+
+            function onOffline() {
+                $("#linemode").show();
+            }
+            function onOnline() {
+                $("#linemode").hide();
+            }    
+            
+            var parentApp = angular.module('busbuzzApp',[
+                    'ngRoute',
+                    'busbuzzControlers'    
+                ]).config(['$routeProvider',
+                  function($routeProvider) {
+                    $routeProvider.
+                      when('/login', {
+                        templateUrl: 'partials/login.html',
+                        controller: 'LoginCtrl'
+                      }).
+                      when('/attendance_view', {
+                        templateUrl: 'partials/attendance_view.html',
+                        controller: 'AttendanceViewCtrl'
+                      }).
+                      when('/attendance_view/:spec_date', {
+                        templateUrl: 'partials/attendance_view.html',
+                        controller: 'AttendanceViewCtrl'
+                      }).
+                      otherwise({
+                        redirectTo: '/login'
+                      });
+                  }]);
+            var busbuzzControlers = angular.module('busbuzzControlers', []);
+ 
+            
+            busbuzzControlers.controller('LoginCtrl', ['$scope', '$http',
+              function ($scope, $http) {
+                //$scope.credencial={};
+                $scope.messages=[];
+                console.log("init");
+                
+                $scope.login = function() {
+
+                    $http({
+                        url: SERVICE_URI+"api-token-auth/",
+                        method: 'POST',
+                        data: 'username='+$scope.user.email+'&password='+$scope.user.password,
+                        //data:{username:'henrylow22m@gmail.com', password: 'test'},
+                        //data:{username: $scope.user.email, password: $scope.user.password},
+                        headers: {
+                              'Content-Type': 'application/x-www-form-urlencoded',
+                              'Access-Control-Allow-Origin': SERVICE_URI
+                              ,'Origin': '*'
+                              //,
+                              //'Access-Control-Allow-Methods': 'POST'
+                              //,
+                              //'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'    
+                            }
+                    }).success(function (data) {
+                        if(data.token){
+                            AUTH_TOKEN = data.token;
+                            window.localStorage.setItem('auth_token',AUTH_TOKEN);
+                            window.location.href = "#/attendance_view";
+                        }else{
+                            $scope.messages.length=0;
+                            if(data.non_field_errors){
+                                for(msg in data.non_field_errors){
+                                    $scope.messages.push(data.non_field_errors[msg]);
+                                }   
+                            }
+                        }
+                    }).error(function(data, status, headers, config){
+                        
+                        if(data.non_field_errors){
+                            $scope.tmp = data.non_field_errors;
+                            console.log("APPLY 1");
+                            var applyFn = function(){
+                                console.log("APPLY");
+                                $scope.messages.length=0;
+
+                                for(msg in $scope.tmp){
+                                    $scope.messages.push($scope.tmp[msg]);
+                                }
+                                console.log($scope.messages);
+                                for(msg in $scope.messages){
+                                    console.log($scope.messages[msg]);
+                                }
+                                
+                            };
+
+                            if ($scope.$$phase) { // most of the time it is "$digest"
+                                console.log("APPLY 2");
+                                applyFn();
+                                //$scope.$apply();
+                                //$scope.$apply(function(){});
+                            } else {
+                                console.log("APPLY 3");
+                                $scope.$apply(applyFn);
+                            } 
+                                
+                        }else{
+                            $scope.messages.push("Error");
+                        }    
+                        
+                        
+                        
+                    });                
+                };
+
+                
+                $scope.main=true;
+                
+            }]).controller('AttendanceViewCtrl', ['$scope', function($scope) {
+			  $scope.attdata = {
+                'bus': {'fs_bus_name_or_number': 'JEEP',
+                		'fs_time_start': '06:30 AM',
+                		'fs_time_end': '07:30 AM',
+                		'ts_bus_name_or_number': 'JEEP',
+                		'ts_time_start': '01:30 PM',
+                		'ts_time_end': '02:30 PM'},
+                'tab': 'Total',
+                'type': 'fromschool',
+                /*
+                'bus_id': self.bus_id,
+                'students': self.students,
+                'curr_date_tz': self.curr_date,
+                'curr_date': self.curr_date,
+                'prev_date': self.prev_date,
+                'next_date': self.next_date,
+                'sort_by': self.sort_by,
+                'desc': self.desc,
+                */
+                'students_total_length': 11,
+                'students_inthebus_length': 5,
+                'students_absent_length': 2,
+                'students_more_length': 5,
+                'students_takingbustoday_length': 11,
+                'students_total_absent_length': 5,
+                
+                'current_date': "Jun 01, 2014 ",
+                'now': "Jun 01, 2014 ",
+                
+                'notifications_count': 3,
+                'trip': {}, //'complete_time': ''
+                'editmode': false,
+                /*
+                'showendtrip': self.trip and self.trip.complete_time is None and len(self.students_more) == 0,
+                'showstarttrip': self.nowutc >= begin_timeutc
+                            and self.nowutc <=  end_timeutc,
+                'students_planed_absent': self.students_planed_absent,
+                'students_total_absent': self.students_total_absent,
+                'tripitems': self.tripitems,
+                'schedulechanges': self.schedulechanges,
+                'students_schedulechange': self.students_schedulechange,
+                'showad': not WORK_IN_WEEKEND and (weekday==6 or weekday==7),
+                'is_today': self.current_date.date() == self.now.date(),
+                'today': self.now.strftime("%Y%m%d"),
+                */
+                'Attendance_Taking_Mode': 'false'
+
+            };
+			}]).controller('AttendanceViewCtrl_2', ['$scope', '$http',
+              function ($scope, $http) {
+                console.log("attendance view");
+                $scope.tripdata = {};
+                $scope.home = function() {
+                	
+                    $http({
+                        url: SERVICE_URI+"attendance_view/",
+                        method: 'GET',
+                        //data: 'username='+$scope.email+'&password='+$scope.password,
+                        
+                        headers: {
+                              'Content-Type': 'application/x-www-form-urlencoded',
+                              'Access-Control-Allow-Origin': SERVICE_URI
+                              ,'Origin': '*'
+                              //,
+                              //'Access-Control-Allow-Methods': 'POST'
+                              //,
+                              //'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'    
+                            }
+                    }).success(function (data) {
+                        console.log(data);
+                        $scope.tripdata = data;
+                        
+                    }).error(function(data, status, headers, config){
+
+                        //$scope.messages = data.non_field_errors;
+                        console.log($scope.messages);
+                    });                
+                };
+                $scope.logout = function(){
+                    //Simple delete the token
+                    console.log("logout");
+                    window.localStorage.setItem('auth_token', '');
+                    window.localStorage.removeItem('auth_token');
+                    homepage="/login";
+                    window.location.href = "#/login";
+                };
+                $scope.home();
+                $scope.main=true;
+                
+              }]).controller('AttendanceViewCtrl_1', ['$scope', '$routeParams', '$http',
+              function ($scope, $routeParams, $http) {
+                //$scope.credencial={};
+                //$scope.messages=[];
+                $scope.tripdata = {};
+                $scope.main = function() {
+                    $http({
+                        url: SERVICE_URI+"parents/home/"+$routeParams.spec_date+"/",
+                        method: 'GET',
+                        //data: 'username='+$scope.email+'&password='+$scope.password,
+                        
+                        headers: {
+                              'Content-Type': 'application/x-www-form-urlencoded',
+                              'Access-Control-Allow-Origin': SERVICE_URI
+                              ,'Origin': '*'
+                               
+                            }
+                    }).success(function (data) {
+                        console.log(data);
+                        $scope.tripdata = data;
+                        
+                    }).error(function(data, status, headers, config){
+
+                        //$scope.messages = data.non_field_errors;
+                        console.log($scope.messages);
+                    });                
+                };
+                $scope.main();
+                $scope.main=true;
+                
+              }
+
+              ]);
+              
+           parentApp.run(function($rootScope) {   
+             $rootScope.$on('$routeChangeSuccess', function (event, currentRoute) {
+           	    console.log(currentRoute.templateUrl);
+			    switch(currentRoute.templateUrl) {
+			        case 'partials/login.html':
+			        	$rootScope.bodylayout = 'loginpage';
+			            break;
+			        case 'partials/attendance_view.html':
+			            $rootScope.bodylayout = 'index4';
+			            break;
+			        default:
+			            $rootScope.bodylayout = '';
+			            break;
+			    }
+			  });   
+			});
+        </script>
+
+
+
+    </body>
+
+</html>

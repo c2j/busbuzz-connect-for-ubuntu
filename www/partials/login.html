@@ -1,0 +1,80 @@
+<style>
+            
+            #loginpage{
+		    padding-top: 10px;
+		    background-color: #fa6c1e;
+		    height: 100%;
+		    }
+		
+		    #loginpage h2{
+		    text-align: center;
+		    }
+		
+		    #login{
+		    background-color: #ebeae9;
+		    background-image: none;
+		    color: #000000;
+		    }
+		    #signup, #continue{
+		    background-color: #ff8518;
+		    background-image: none;
+		    color: #ffffff;
+		    padding: 6px 12px;
+		    }
+		
+		    .link{
+		    color: #ffffff;
+		    }
+		
+		    a, a:hover, a:visited {
+		    text-decoration: none;
+		    color:#ffffff;
+		    }
+        </style>
+<div id="loginpage" ng-controller="LoginCtrl">
+
+    
+<h2 style="text-align: center;">
+    <img style="width:91px;height:105px" src="images/BusBuzz_Connect_Logo.png"/>
+</h2>
+
+
+<div class="alert-error" ng-show="messages.length" >
+    
+    <ul class="errorlist" ng-model="messages"><li ng-repeat="msg in messages"><span ng-bind="msg"></span></li></ul>
+    
+</div>
+
+<div class="content container">
+
+    <form class="form-horizontal" role="form" 
+          autocapitalize="off" autocorrect="off" autocomplete="off"
+          name="loginForm"
+    >
+
+    <div class="form-group">
+        <div class="col-xs-12 top-space bottom-space2">
+            <input class="form-control" id="id_email" name="email" placeholder="Email" type="email" ng-model="user.email" ng-required/>
+
+        </div>
+        <div class="col-xs-12 bottom-space2">
+            <input class="form-control" id="id_password" name="password" placeholder="Password" type="password" ng-model="user.password" ng-required />
+
+        </div>
+
+        <input type="hidden" name="remember" value="on"/>
+
+        
+        <!-- Single button -->
+
+        <div class="col-xs-12">
+            <button type="button" class="btn input-full-width" id="login" ng-click="login()">
+                Login
+            </button>
+        </div>
+
+    </div>
+    </form>
+</div>
+<!-- /container -->
+</div>

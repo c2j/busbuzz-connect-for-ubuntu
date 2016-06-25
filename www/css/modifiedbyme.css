@@ -1,0 +1,452 @@
+.icn-delete {
+    background:url('../img/btn-delete.jpg') no-repeat;
+    background-size:46px 32px;
+    float: left;
+    height: 38px;
+    width: 50px;
+    border-width: 0px
+    }
+
+.icn-minus {
+    background:url('../img/icn-minus.png') no-repeat;
+    background-size:28px 28px;
+    float: left;
+    height: 28px;
+    width: 28px;
+    border-width: 0px
+    }
+
+#modal_delete_bus .modal-title, #modal_logout .modal-title, #modal_delete_student .modal-title, #modal_notify_parent .modal-title, #modal_delete_message .modal-title, #modal_cancel_trip .modal-title    {
+font-size: 18px;
+color: #a70000;
+padding-left: 35px;
+}
+
+/*
+#modal_delete_bus p, #modal_delete_student p {
+color: #7c7c7c;
+font-size: 12px;
+margin: 5px 0 10px;
+display: block;
+}
+*/
+
+.errorlist {
+  color: #b94a48;
+  padding-left: 10px;
+  padding-top: 5px;
+
+  list-style: none;
+}
+
+/*
+select{
+    -webkit-appearance: menulist;
+}
+*/
+
+.navbar{
+    margin-bottom:0px;
+}
+
+div.menu-offcanvas .terms {color:##FB5A02; margin-top:10px;}
+
+.menu-offcanvas{
+    background-color: rgb(251, 90, 2);
+}
+
+.alert-error {
+    background-color: #fcca95;
+    /*background-color: #fd9322;*/
+    border-color: #fd9322;
+    color:#b94a48;
+    text-align: left;
+    padding:3px 15px 3px 15px;
+}
+
+.alert-error .errorlist{
+    padding-top:2px;
+    margin-bottom:2px;
+}
+
+div.menu-offcanvas.active{
+        height: 960px;
+    }
+ul.list-group{
+    margin-bottom: 0px;
+}
+
+.icn-pen {
+    background:url('../img/icn-pen.png') no-repeat;
+    background-size:23px 24px;
+    background-position:0px center !important;
+    }
+
+.truncate {
+   text-overflow: ellipsis;
+   /*display: inline-block;*/
+   vertical-align: top;
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+#index4 div.navbar-header h1 {
+line-height: 24px;
+margin-top:3px;
+}
+
+button.btn-back{
+    border: 0px;
+}
+
+#btn-search {
+		text-indent: -1000em;
+		width: 25px;
+
+		display: inline-block;
+		background:url('../img/icn-search.png') 12px center no-repeat;
+        background-size: 14px 15px;
+		cursor:pointer;
+		position: absolute;
+
+	}
+input.searchbox{
+
+    border-radius:15px;
+
+    height: 25px;
+    padding:0 10px 0 30px;
+    font-size:14px;
+}
+
+
+input.clearable{
+  background:url(../img/btn-clear.png) no-repeat right -20px center #fff;
+  background-size: 18px 19px;
+}
+/*
+input[value]:not([value=""]).clearable{
+  background-position: right 5px center;
+}
+*/
+.clearable.x{
+  background-position: right 5px center;
+}
+.clearable.onX{
+  cursor:pointer;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+line-height: 14px;
+vertical-align: text-top;
+background-image: url("../img/glyphicons-halflings.png");
+/*background-position: 14px 14px;*/
+background-repeat: no-repeat;
+}
+
+.icon-time {
+background-position: -48px -24px;
+}
+.icon-chevron-up {
+background-position: -288px -120px;
+}
+.icon-chevron-down {
+background-position: -313px -119px;
+}
+
+
+
+.input-append .add-on:last-child, .input-append .btn:last-child, .input-append .btn-group:last-child>.dropdown-toggle {
+-webkit-border-radius: 0 4px 4px 0;
+-moz-border-radius: 0 4px 4px 0;
+border-radius: 0 4px 4px 0;
+}
+.bootstrap-timepicker .add-on {
+cursor: pointer;
+}
+
+.input-append .add-on, .input-append .btn, .input-append .btn-group {
+margin-left: -2px;
+}
+
+.input-append .add-on, .input-prepend .add-on, .input-append .btn, .input-prepend .btn, .input-append .btn-group>.dropdown-toggle, .input-prepend .btn-group>.dropdown-toggle {
+vertical-align: top;
+-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;
+}
+
+.input-append .add-on, .input-prepend .add-on {
+display: inline-block;
+width: 24%;
+height: 43px;
+min-width: 16px;
+padding: 9px 5px;
+font-size: 14px;
+font-weight: normal;
+line-height: 20px;
+text-align: center;
+text-shadow: 0 1px 0 #fff;
+background-color: #eee;
+border: 1px solid #ccc;
+}
+
+div.bootstrap-timepicker {
+width: 50%;
+}
+.bootstrap-timepicker .form-control{
+ width: 90%;
+ display: inline-block;
+}
+div.bootstrap-timepicker-widget table td input {
+width: 40px;
+margin: 0;
+text-align: center;
+}
+.bootstrap-timepicker-widget table td:not(.separator) {
+min-width: 30px;
+}
+.bootstrap-timepicker-widget a.btn, .bootstrap-timepicker-widget input {
+border-radius: 4px;
+}
+
+.bootstrap-timepicker input.form-control[readonly]:not([disabled]) {
+background-color: #fff;
+cursor: auto;
+box-shadow: inset 2px 2px 2px 0px #dddddd;
+color: #000;
+}
+
+.input-append span.add-on, .add-on .icon-time{
+    display:none;
+    width:0px;
+}
+
+a.btn-chat {
+right: 51px;
+}
+
+input.form-control[disabled], input.form-control[readonly], fieldset[disabled] .form-control {
+background-color: #bcbdbd;
+color: #eceded;
+}
+
+
+.float-banner {background:#fff; z-index:5; opacity:0.7; position:fixed; bottom:0; width:70%; margin-left:15%; margin-right:15%; text-align:center; padding:0.5em; font-size:16px; color:#fff;}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
+    box-shadow: none;
+}
+
+.icn-phone-grey {background:url('../img/icn-phone-grey.png') no-repeat #5c842f; padding:9px 0; background-size:20px 20px; background-position:center center;}
+
+.icn-pencil { background:url('../img/icn-pencil.png') no-repeat; background-size:22px 23px; background-position:24px center !important;}
+
+.icn-bus-white { background:url('../img/icn-bus-white.png') no-repeat; background-size:22px 23px; background-position:24px center !important;}
+
+div.icn-home {
+background: url('../img/icn-bus-grey.png') no-repeat;
+background-size: 53px 53px;
+background-position-y: 10px;
+}
+
+div.icn-school {
+background: url('../img/icn-bus-grey.png') no-repeat;
+background-size: 53px 53px;
+background-position-y: 10px;
+}
+
+a.btn-chat{
+ width:28px;
+}
+
+input[type=checkbox], button, a, .bootstrap-timepicker input, .timeline, .date, .dashboard, .total_student, .navbar, .menu-offcanvas{
+-webkit-user-select: none;
+}
+
+.round-checkbox-tick, .round-checkbox-tick-editmode {
+width: 26px;
+height: 26px;
+background: url(../img/icn-round_gray_neutral.png) 0 0 no-repeat;
+background-size: cover;
+display: inline-block;
+text-indent: -9999px;
+position: relative;
+top: 0px;
+margin-right: 0px;
+}
+
+.round-checkbox-x-editmode {
+width: 26px;
+height: 26px;
+background: url(../img/icn-round_red_cross.png) 0 0 no-repeat;
+background-size: cover;
+display: block;
+text-indent: -9999px;
+margin: 0 auto;
+}
+
+input[type=checkbox].css-checkbox:checked + .round-checkbox-tick-editmode {
+background-size: 26px 26px;
+background: url(../img/icn-round_green_check.png) 0 0 no-repeat;
+background-size: cover;
+}
+
+.round-checkbox-x {
+width: 26px;
+height: 26px;
+background: url(../img/round_grey_cross.png) 0 0 no-repeat;
+background-size: cover;
+display: block;
+text-indent: -9999px;
+margin: 0 auto;
+}
+
+input[type=checkbox].css-checkbox:checked + .round-checkbox-tick {
+background-size: 26px 26px;
+background: url(../img/round_grey_tick.png) 0 0 no-repeat;
+background-size: cover;
+}
+
+/*
+#index4 .timeline-block ul li.tripitem {
+padding: 10px 15px 0px 5px;
+clear: both;
+margin-bottom: 3px;
+border-bottom: 1px solid #d9d6d6;
+}
+*/
+
+div.menu-offcanvas {
+position: absolute;
+left: -280px;
+top: 0px;
+width: 280px;
+height: 0px;
+overflow: hidden;
+}
+
+div.wrapper.inactive {
+left: 280px;
+}
+
+#index4 .timeline-block span.timeline-address{
+    padding-bottom: 10px;
+}
+.round-ind-cross, .round-ind-tick, .round-ind-cross-editmode, .round-ind-tick-editmode {
+    width: 180px;
+    height: 20px;
+    text-indent: 20px;
+    float: left;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 12px;
+    /*color: #949393;*/
+}
+
+.round-ind-cross-editmode {
+    background: url(../img/icn_ind_cross.png) no-repeat;
+    background-size: 16px ;
+    background-position-y: 1px;
+}
+
+.round-ind-tick-editmode {
+    background: url(../img/icn_ind_tick.png) no-repeat;
+    background-size: 16px;
+    background-position-y: 1px;
+}
+
+.round-ind-cross {
+    background: url(../img/icons_grey_cross.png) no-repeat;
+    background-size: 16px ;
+    background-position-y: 1px;
+}
+
+.round-ind-tick {
+    background: url(../img/icons_grey_tick.png) no-repeat;
+    background-size: 16px;
+    background-position-y: 1px;
+}
+
+.icn-schedule { background:url('../img/icn-schedule.png') no-repeat; background-size:22px 23px; background-position:24px center !important;}
+
+.float_button {
+z-index: 5;
+opacity: 1;
+position: fixed;
+bottom: 0;
+width: 100%;
+padding-right: 15px;
+padding-left: 15px;
+text-align: center;
+padding-bottom: 0.5em;
+font-size: 16px;
+color: #fff;
+}
+
+
+input[type=radio]:checked {
+background: url(../img/icn-round_green_check.png) 0 0 no-repeat;
+background-size: 23px 23px;
+}
+
+input[type=radio] {
+width: 26px;
+height: 26px;
+background: url(../img/icn-round_gray_neutral.png) 0 0 no-repeat;
+background-size: 23px 23px;
+display: block;
+text-indent: -9999px;
+margin: 0 auto;
+-webkit-appearance: none;
+border:0px;
+}
+
+.radio{
+    padding-bottom: 7px;
+}
+.radio label {
+padding-left: 10px;
+}
+
+
+#index6 .content .list-label {
+margin-left: 10px;
+margin-bottom: -10px;
+}
+
+.changed{
+  color: red;
+}
+
+button.btn-orange,.btn-orange:hover,.btn-orange:active {background:#FD9322;color:#ffffff;}
+
+ul li.tick {background:url(../img/icn-sm-tick.png) no-repeat; background-size:14px 11px; background-position:bottom center;}
+ul li.cross {background:url(../img/icn-sm-cross.png) no-repeat; background-size:11px 11px; background-position:bottom center;}
+
+		#index .dashboard .taking { width:50%;  background:#72d701; padding:5px 0; float:left;  font-weight:bold; border-bottom-right-radius: 0px;}
+		#index .dashboard .not-taking { width:50%;  background:#f21010; color:#FFF; padding:5px 0; float:left; font-weight:bold; border-left:1px solid #d9d6d6; border-bottom-right-radius: 0px;}
+		#index .dashboard .na { width:50%;  background:#72a501; padding:5px 0; float:left;  font-weight:bold;}
+
+.iamparents .btn-back { position:absolute; left:10px; top:10px; background:url('../img/btn-back-yellow.png') no-repeat; background-size:cover; text-indent:-9999px; width:52px; height:32px;}
+
+.iamparents#index6 .content .list-group .list-group-item a {
+    background: url(../img/icn-right-arrow-yellow.png) right center no-repeat;
+    background-size: 9px 14px;
+}
+
+.iamparents#index6 .content .list-group .list-group-item a .status{
+  float: right;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+.iamparents#index6 .content .list-group .list-group-item a .status.active{
+  color:#ff8518;
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=busbuzzconnect
+Exec=ubuntu-html5-app-launcher $@ --www=www --inspector
+Icon=busbuzz-connect.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+
