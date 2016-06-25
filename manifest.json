@@ -4,14 +4,14 @@
     "architecture": "all",
     "title": "busbuzz-connect",
     "hooks": {
-        "busbuzzconnect": {
-            "apparmor": "busbuzzconnect.apparmor",
-            "desktop":  "busbuzzconnect.desktop"
+        "busbuzz": {
+            "apparmor": "busbuzz.apparmor",
+            "desktop":  "busbuzz.desktop"
         }
     },
     "version": "0.1",
     "maintainer": "Jianjun Chen <chenjj.yz@gmail.com>",
-    "framework" : "ubuntu-sdk-15.04"
+    "framework" : "ubuntu-sdk-15.04.5"
 }
 
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=busbuzz
+Exec=webapp-container --inspector ./www/index.html
+Icon=busbuzz-connect.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+

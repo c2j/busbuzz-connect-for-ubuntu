@@ -36,7 +36,15 @@ Project {
         filter: "*"
     }
     Files {
+        directory: "www/images/"
+        filter: "*"
+    }
+    Files {
         directory: "www/img/"
+        filter: "*"
+    }
+    Files {
+        directory: "www/font/"
         filter: "*"
     }
     Files {
